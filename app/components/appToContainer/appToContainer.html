@@ -1,0 +1,80 @@
+<rd-header>
+    <rd-header-title title="ShipM">
+        <a data-toggle="tooltip" title="Refresh" ui-sref="apptocontainer" ui-sref-opts="{reload: true}">
+            <span class="header-refresh"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+        </a>
+    </rd-header-title>
+    <rd-header-content>ShipM management</rd-header-content>
+</rd-header>
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <rd-widget>
+            <rd-widget-header icon="fa-plus" title="Add builder image and source details">
+            </rd-widget-header>
+            <rd-widget-body>
+                <form id="atoc_input_form" class="form-horizontal">
+                    <!-- baseimage-input -->
+                    <div class="form-group">
+                        <label for="builder_image" class="col-sm-3 col-lg-2 control-label text-left">Builder Image Name
+                            <dockm-tooltip position="bottom" message="Specify builder image name. This field is mandatory."></dockm-tooltip>
+                        </label>
+                        <div class="col-sm-9 col-lg-10">
+                            <input type="text" autocomplete="off" class="form-control" id="builder_image" list="dropdown" ng-model="formValues.BaseImage" placeholder="e.g. rhscl/ruby-22-rhel7">
+                            <datalist  id="dropdown">
+                                <option ng-repeat="(key,value) in builderImages">{{key}}</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <!-- !name-input -->
+                    <!-- source code-input -->
+                    <div class="form-group">
+                        <label for="sc_url" class="col-sm-3 col-lg-2 control-label text-left">
+                            Source code URL
+                            <dockm-tooltip position="bottom" message="URL where source code is available. This field is mandatory."></dockm-tooltip>
+                        </label>
+                        <div class="col-sm-9 col-lg-10">
+                            <input type="text" class="form-control" id="sc_url" ng-model="formValues.GitUrl" placeholder="e.g. https://github.com/Click2Cloud/nodejs-example">
+                        </div>
+                    </div>
+                    <!-- new-image name-input -->
+                    <div class="form-group">
+                        <label for="new_image" class="col-sm-3 col-lg-2 control-label text-left">
+                            New Image Name
+                            <dockm-tooltip position="bottom" message="Name of your new image after image build. This field is mandatory."></dockm-tooltip>
+                        </label>
+                        <div class="col-sm-9 col-lg-10">
+                            <input type="text" class="form-control" id="new_image" ng-model="formValues.ImageName" placeholder="e.g. click2cloud">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary btn-sm"   ng-click="buildApptocontainer()"ng-disabled="isbisabled">Build Image</button>
+                            <!--<a type="button" class="btn btn-default btn-sm" ui-sref="apptocontainer">Cancel</a>-->
+                            <i id="atocBuildSpinner" class="fa fa-cog fa-spin" style="margin-left: 5px; display: none;"></i>
+                            <span id="notify" style="margin-left: 5px; display: none; font-size:80%">Building....</span>
+
+                        </div>
+                    </div>
+                </form>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <rd-widget>
+            <rd-widget-header icon="fa-info-circle" title="Build logs"></rd-widget-header>
+            <rd-widget-body classes="no-padding">
+                <div class="panel-body">
+                    <pre id="stdoutLog" class="pre-scrollable pre-x-scrollable" ng-show="appToContainerlogs">{{appToContainerlogs}}</pre>
+                </div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+</div>
+
+</div>

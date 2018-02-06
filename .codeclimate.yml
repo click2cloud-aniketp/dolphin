@@ -1,0 +1,29 @@
+---
+engines:
+  gofmt:
+    enabled: true
+  golint:
+    enabled: true
+  govet:
+    enabled: true
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 80
+  eslint:
+    enabled: true
+    config:
+      config: .eslintrc.yml
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "**.css"
+  - "**.js"
+  - "**.go"
+exclude_paths:
+- test/

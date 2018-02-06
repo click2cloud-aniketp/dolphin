@@ -1,0 +1,51 @@
+body {
+  font-size: 100%;
+  color: #333;
+  background: #d5dbdb ;
+  margin:0;padding:0;
+  padding-top: 60px;
+}
+
+html {position: relative;min-height: 100%;}
+body {margin-bottom: 60px;}
+
+.footer {position: absolute;bottom: 0;width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;padding-top: 10px;background-color: #2e292f;color: #efefef;}
+
+.homePg{padding: 0px !important;background-image: url("../images/laith-abdulkareem-96120.jpg");background-size: cover;background-position: center center;}
+
+a {color:#337ab7 ;text-decoration: none;}
+p{padding: 0px 0px 20px 0px;}
+
+.right{text-align:right;}
+.center{text-align:center}
+
+.cd-panel-content .topLink {display: inline-block;padding:15px;background-color: #643EBF;text-align: center;color: #fff;margin-right:6px;}
+.cd-panel-content .topLink:hover, .cd-panel-content .topLink.current {background-color: #fff;color: #222;}
+
+.cd-panel-content ul.sideLink{padding: 0;margin: 0; }
+.cd-panel-content ul.sideLink li{padding: 0;margin: 0;}
+.cd-panel-content ul.sideLink a{display: block;color: #fff;padding: 7px 5%;font-size: 12px;}
+.cd-panel-content ul.sideLink a i{margin-right: 20px;}
+.cd-panel-content ul.sideLink a:hover{background-color:#1A2226; border-right: 3px solid #03A9F4;}
+
+.cPanelTabs{border-bottom: solid 1px #777;margin-bottom: 10px;overflow: hidden;padding:0px 0px 5px 0px;}
+.cPanelTabs a{display: inline-block;padding:5px;width: 50px; background-color: #777;text-align: center;color: #fff;margin-right:10px;float: left;}
+.cPanelTabs a:hover {background-color: #fff;color: #222;}
+.cPanelTabs a.current{background-color:#03a9f4;}
+.cPanelTabs a.current:hover{color:#fff;}
+
+.inputCtl{padding: 0px 0px;border: solid 1px #555;}
+.innerBox{padding: 0px 5%;clear: both !important;float: none;}
+
+.loginBlock{background-color:#2D004E;color:#fff;padding:100px 40px;}
+.tooltip > .tooltip-inner {background-color: #03a9f4;color: #fff;border:none;padding: 5px 10px;font-size:11px;border-radius: 0;}
+.tooltip.left > .tooltip-arrow {border-left: 5px solid #03a9f4;}
+.quickLink {display:block;padding:8px;background-color: #777;text-align: center;color: #fff;margin-left:auto;margin-right: auto;margin-top:10px;width:37px;}
+.quickLink:hover {background-color: #fff;color: #222;}
+/*.quickPanel a:first-child{margin-top: 20px;}*/
+.quickPanel{position: absolute;top:0;right:0;width:100%;height:100%;padding:0px; background-color: #222D32; color: #efefef;display: block; overflow: auto;}
+.quickPanel hr{margin: 10px 0px;display: block;height: 1px;border: 0;border-top: 1px solid #555;padding: 0; }
+
+.quickPanel-container{position: fixed;top:0;right:0;width:65px;height:100%;padding:0px;background-color: #222D32; color: #efefef; display: block; z-index: 999; direction: rtl; margin-top: 4.2%;}

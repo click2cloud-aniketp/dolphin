@@ -1,0 +1,43 @@
+<rd-header>
+    <rd-header-title title="Kubernetes">
+        <a data-toggle="tooltip" title="Refresh" ui-sref="orchestration" ui-sref-opts="{reload: true}">
+            <span class="header-refresh"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+        </a>
+    </rd-header-title>
+    <rd-header-content>Kubernetes Dashboard</rd-header-content>
+</rd-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <rd-widget>
+                <rd-widget-header icon="fa fa-empire" title="Click to setup kubernetes-dashboard"></rd-widget-header>
+                <rd-widget-body>
+                    <form id="otos_input_form" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-primary btn-sm"   ng-click="selectOrchestration()"ng-disabled="isbisabled">Kubernetes Dashboard</button>
+                                <i id="otosBuildSpinner" class="fa fa-cog fa-spin" style="margin-left: 5px; display: none;"></i>
+                                <span id="notify" style="margin-left: 5px; display: none; font-size:80%">Please wait while Kubernetes-dashboard setup....</span>
+                            </div>
+                        </div>
+                    </form>
+                </rd-widget-body>
+            </rd-widget>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <rd-widget>
+                <rd-widget-header icon="fa-info-circle" title="Build logs"></rd-widget-header>
+                <rd-widget-body classes="no-padding">
+                    <div class="panel-body">
+                        <pre id="stdoutLog" class="pre-scrollable pre-x-scrollable" ng-show="Orchestrationlogs">{{Orchestrationlogs}}</pre>
+                    </div>
+                </rd-widget-body>
+            </rd-widget>
+        </div>
+    </div>
+
+</div>

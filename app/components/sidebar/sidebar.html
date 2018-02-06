@@ -1,0 +1,71 @@
+<div class="quickPanel-container">
+    <div class="quickPanel">
+        <a ui-sref="dashboard" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Dashboard"><i class="fa fa-th" aria-hidden="true"></i></a>
+        <a ui-sref="templates" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="App&nbsp;Templates"><i class="fa fa-space-shuttle" aria-hidden="true"></i></a>
+        <a ui-sref="stacks" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Stack"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+        <a ng-if="applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE'" ui-sref="services" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Services"><i class="fa fa-life-ring" aria-hidden="true"></i></a>
+        <a ui-sref="containers" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Containers"><i class="fa fa-server" aria-hidden="true"></i></a>
+        <a ui-sref="apptocontainer" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="App to Container"><i class="fa fa-ship" aria-hidden="true"></i></a>
+        <a ui-sref="orchestration" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Kubernetes Dashboard"><i class="fa fa-empire" aria-hidden="true"></i></a>
+        <a ui-sref="images" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Images"><i class="fa fa-clone" aria-hidden="true"></i></a>
+        <a ui-sref="networks" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Networks"><i class="fa fa-snowflake-o" aria-hidden="true"></i></a>
+        <a ui-sref="volumes" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Volumes"><i class="fa fa-cubes" aria-hidden="true"></i></a>
+        <a ng-if="applicationState.endpoint.apiVersion >= 1.25 && applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE'" ui-sref="secrets" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Secrets"><i class="fa fa-user-secret" aria-hidden="true"></i></a>
+        <a ng-if="applicationState.endpoint.mode.provider === 'DOCKER_SWARM' || (applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE' && applicationState.endpoint.mode.role === 'MANAGER')" ui-sref="swarm" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Swarm"><i class="fa fa-object-group" aria-hidden="true"></i></a>
+        <hr>
+        <a ng-if="applicationState.application.authentication && (isAdmin || isTeamLeader)" ui-sref="users" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="User management"><i class="fa fa-users" aria-hidden="true"></i></a>
+        <a ng-if="!applicationState.application.authentication || isAdmin" ui-sref="endpoints" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Endpoints"><i class="fa fa-plug" aria-hidden="true"></i></a>
+        <a ng-if="!applicationState.application.authentication || isAdmin" ui-sref="registries" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Registries"><i class="fa fa-database" aria-hidden="true"></i></a>
+        <a ng-if="!applicationState.application.authentication || isAdmin" ui-sref="settings" ui-sref-active="active" class="animated flipInY delay quickLink" data-toggle="tooltip" data-placement="left" title="Settings"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+<div class="cd-panel from-right" >
+    <header class="cd-panel-header">
+        <!--<img ng-if="!logo" src="images/logo.png" class="img-responsive logo ng-scope" alt="Click2Cloud DockM">-->
+        <h2 style="color:#03A9F4; background-color: #222D32; font-family: sans-serif; font-size: 1.0em; font-weight: bold; margin:0px; padding-left: 4%;">Click2Cloud DockM</h2>
+        <a href="" class="cd-panel-close">Close</a>
+    </header>
+    <div class="cd-panel-container">
+        <div class="cd-panel-content">
+            <div class="innerBox" style="direction: ltr;">
+                <p class="cPanelTabs">
+                    <a ui-sref="userSettings" data-toggle="tooltip" title="My Account" class="animated fadeInUp delay"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                    <a ui-sref="auth({logout: true})" data-toggle="tooltip" title="Logout" class="animated fadeInUp delay"><i class="fa fa-sign-out" aria-hidden="true"></i></a></p>
+                <h1>Active Endpoint</h1>
+                <select class="inputCtl select-endpoint form-control" style="margin-left: 0px; margin-right: 0px;" ng-options="endpoint.Name for endpoint in endpoints" ng-model="activeEndpoint" ng-change="switchEndpoint(activeEndpoint)">
+                </select>
+            </div>
+
+            <h1 class="innerBox" style="direction: ltr;">Endpoint Actions</h1>
+            <ul class="sideLink" style="direction: ltr;">
+                <li class="sidebar-list"><a ui-sref="dashboard" ui-sref-active="active"><i class="fa fa-th" aria-hidden="true" style="width:15px"></i><span>Dashboard</span></a></li>
+                <li class="sidebar-list"><a ui-sref="templates" ui-sref-active="active"><i class="fa fa-space-shuttle" aria-hidden="true" style="width:15px"></i><span>App Templates</span></a></li>
+                <!--<li class="sidebar-sublist"><a ui-sref="templates_linuxserver" ui-sref-active="active" ng-if="toggle && displayExternalContributors && ($state.current.name === 'templates' || $state.current.name === 'templates_linuxserver')"><i aria-hidden="true"></i>   LinuxServer.io</a></li>-->
+                <li ng-if="toggle && displayExternalContributors" class="sidebar-sublist"><a ui-sref="templates_linuxserver" ui-sref-active="active"><i aria-hidden="true" style="width:21px"></i><span>LinuxServer.io</span></a></li>
+                <li class="sidebar-list"><a ui-sref="stacks" ui-sref-active="active"><i class="fa fa-th-list" aria-hidden="true" style="width:15px"></i><span>Stack</span></a></li>
+                <li ng-if="applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE'" class="sidebar-list"><a ui-sref="services" ui-sref-active="active"><i class="fa fa-life-ring" aria-hidden="true" style="width:15px"></i><span>Services</span></a></li>
+                <li class="sidebar-list"><a ui-sref="containers" ui-sref-active="active"><i class="fa fa-server" aria-hidden="true" style="width:15px"></i><span>Containers</span></a></li>
+                <li class="sidebar-list"><a ui-sref="apptocontainer" ui-sref-active="active"><i class="fa fa-ship" style="width:15px"></i><span>ShipM</span></a></li>
+                <li class="sidebar-list"><a ui-sref="orchestration" ui-sref-active="active"><i class="fa fa-empire" style="width:15px"></i><span>Kubernetes Dashboard</span></a></li>
+                <li class="sidebar-list"><a ui-sref="images" ui-sref-active="active"><i class="fa fa-clone" aria-hidden="true" style="width:15px"></i><span>Images</span></a></li>
+                <li class="sidebar-list"><a ui-sref="networks" ui-sref-active="active"><i class="fa fa-snowflake-o" aria-hidden="true" style="width:15px"></i><span>Networks</span></a></li>
+                <li class="sidebar-list"><a ui-sref="volumes" ui-sref-active="active"><i class="fa fa-cubes" aria-hidden="true" style="width:15px"></i><span>Volumes</span></a></li>
+                <li ng-if="applicationState.endpoint.apiVersion >= 1.25 && applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE'" class="sidebar-list"><a ui-sref="secrets" ui-sref-active="active"><i class="fa fa-user-secret" aria-hidden="true" style="width:15px"></i><span>Secrets</span></a></li>
+                <li class="sidebar-list" ng-if="(applicationState.endpoint.mode.provider === 'DOCKER_STANDALONE' || applicationState.endpoint.mode.provider === 'VMWARE_VIC') && isAdmin"><a ui-sref="events" ui-sref-active="active"><i class="menu-icon fa fa-history" aria-hidden="true" style="width:15px"></i><span>Events</span></a></li>
+                <li ng-if="applicationState.endpoint.mode.provider === 'DOCKER_SWARM' || (applicationState.endpoint.mode.provider === 'DOCKER_SWARM_MODE' && applicationState.endpoint.mode.role === 'MANAGER')" class="sidebar-list"><a ui-sref="swarm" ui-sref-active="active"><i class="fa fa-object-group" aria-hidden="true" style="width:15px"></i><span>Swarm</span></a></li>
+                <li class="sidebar-list" ng-if="applicationState.endpoint.mode.provider === 'DOCKER_STANDALONE' || applicationState.endpoint.mode.provider === 'VMWARE_VIC'"><a ui-sref="engine" ui-sref-active="active"><i class="menu-icon fa fa-th" aria-hidden="true" style="width:15px"></i><span>Engine</span></a></li>
+            </ul>
+            <h1 ng-if="!applicationState.application.authentication || isAdmin || isTeamLeader" class="innerBox" style="direction: ltr;">DockM Settings</h1>
+            <ul class="sideLink" style="direction: ltr;">
+                <li ng-if="applicationState.application.authentication && (isAdmin || isTeamLeader)" class="sidebar-list"><a ui-sref="users" ui-sref-active="active"><i class="fa fa-users" aria-hidden="true" style="width:15px"></i><span>User management</span></a></li>
+                <li ng-if="applicationState.application.authentication && (isAdmin || isTeamLeader)" class="sidebar-sublist"><a ui-sref="teams" ui-sref-active="active"><i aria-hidden="true" style="width:21px"></i><span>Teams</span></a></li>
+                <li ng-if="!applicationState.application.authentication || isAdmin" class="sidebar-list"><a ui-sref="endpoints" ui-sref-active="active"><i class="fa fa-plug" aria-hidden="true" style="width:15px"></i><span>Endpoints</span></a></li>
+                <li ng-if="!applicationState.application.authentication || isAdmin" class="sidebar-list"><a ui-sref="registries" ui-sref-active="active"><i class="fa fa-database" aria-hidden="true" style="width:15px"></i><span>Registries</span></a></li>
+                <li ng-if="!applicationState.application.authentication || isAdmin" class="sidebar-list"><a ui-sref="settings" ui-sref-active="active"><i class="fa fa-cogs" aria-hidden="true" style="width:15px"></i><span>Settings</span></a></li>
+                <li ng-if="!applicationState.application.authentication || isAdmin" class="sidebar-sublist"><a ui-sref="settings_authentication" ui-sref-active="active"><i aria-hidden="true" style="width:21px"></i><span>Authentication</span></a></li>
+            </ul>
+
+        </div> <!-- cd-panel-content -->
+    </div> <!-- cd-panel-container -->
+</div> <!-- cd-panel -->
